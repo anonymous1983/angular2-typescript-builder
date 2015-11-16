@@ -20,16 +20,11 @@ var gulp = require('gulp'),
 var fnScript = function () {
     console.log(CONFIG.PATH.dist.js);
     gulp.src(CONFIG.PATH.src.ts)
-        .pipe(typescript())
-        .pipe(typescriptAngular({
-          decoratorModuleName:'sample'
-        }))
-
-        //.pipe(rename({suffix: '.min'}))
-        //.pipe(concat('script.js'))
-        //.pipe(gulp.dest(CONFIG.PATH.dist.js))
-        //.pipe(uglify())
-        //.pipe(concat('script.min.js'))
+        .pipe(rename({suffix: '.min'}))
+        .pipe(concat('script.js'))
+        .pipe(gulp.dest(CONFIG.PATH.dist.js))
+        .pipe(uglify())
+        .pipe(concat('script.min.js'))
         .pipe(gulp.dest(CONFIG.PATH.dist.js));
 };
 gulp.task('scripts', fnScript());
@@ -39,13 +34,11 @@ gulp.task('scripts', fnScript());
 // TypeScript Task
 // /////////////////////////////////////////////////////////////////
 var fnTypeScript = function () {
-    console.log(CONFIG.PATH.dist.js);
     gulp.src(CONFIG.PATH.src.ts)
         .pipe(typescript())
         .pipe(typescriptAngular({
           decoratorModuleName:'sample'
         }))
-
         .pipe(rename({suffix: '.min'}))
         .pipe(concat('script.js'))
         .pipe(gulp.dest(CONFIG.PATH.dist.js))
